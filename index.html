@@ -9,344 +9,6 @@
 
     <link rel="stylesheet" href="styles.css">
 
-    <style media="not all">
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background: #f4f7fb;
-            color: #1f2937;
-            padding: 30px 15px;
-        }
-
-        .container {
-            max-width: 950px;
-            margin: auto;
-        }
-
-        /* Header */
-        .header {
-            text-align: center;
-            margin-bottom: 25px;
-        }
-
-        .header h1 {
-            color: #1d4ed8;
-            font-size: 34px;
-            margin-bottom: 8px;
-        }
-
-        .header p {
-            color: #64748b;
-        }
-
-        /* Tabs */
-        .tabs {
-            display: flex;
-            background: white;
-            padding: 5px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            box-shadow: 0 3px 12px rgba(0,0,0,0.05);
-        }
-
-        .tab-btn {
-            flex: 1;
-            padding: 13px;
-            border: none;
-            background: transparent;
-            color: #64748b;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            border-radius: 7px;
-        }
-
-        .tab-btn.active {
-            background: #2563eb;
-            color: white;
-        }
-
-        /* Cards */
-        .card {
-            background: white;
-            border-radius: 12px;
-            padding: 25px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
-        }
-
-        .card h2 {
-            margin-bottom: 6px;
-        }
-
-        .description {
-            color: #64748b;
-            margin-bottom: 20px;
-            font-size: 14px;
-        }
-
-        /* Tables */
-        .table-header,
-        .subject-row {
-            display: grid;
-            grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr 50px;
-            gap: 10px;
-            align-items: center;
-        }
-
-        .table-header {
-            font-weight: bold;
-            color: #475569;
-            margin-bottom: 10px;
-            padding: 0 5px;
-            font-size: 14px;
-        }
-
-        .subject-row {
-            margin-bottom: 10px;
-        }
-
-        /* Inputs */
-        input {
-            width: 100%;
-            padding: 11px;
-            border: 1px solid #cbd5e1;
-            border-radius: 7px;
-            outline: none;
-            font-size: 14px;
-        }
-
-        input:focus {
-            border-color: #2563eb;
-        }
-
-        /* Grade / Point */
-        .grade,
-        .point {
-            background: #f1f5f9;
-            padding: 11px;
-            border-radius: 7px;
-            text-align: center;
-            font-weight: bold;
-        }
-
-        /* Buttons */
-        button {
-            border: none;
-            cursor: pointer;
-            border-radius: 7px;
-            font-size: 14px;
-        }
-
-        .add-btn {
-            background: #2563eb;
-            color: white;
-            padding: 12px 18px;
-            margin-top: 10px;
-        }
-
-        .add-btn:hover {
-            background: #1d4ed8;
-        }
-
-        .delete-btn {
-            background: #fee2e2;
-            color: #dc2626;
-            width: 40px;
-            height: 40px;
-            font-size: 18px;
-        }
-
-        .delete-btn:hover {
-            background: #fecaca;
-        }
-
-        .reset-btn {
-            background: #e2e8f0;
-            color: #334155;
-            padding: 12px 18px;
-        }
-
-        .actions {
-            display: flex;
-            gap: 10px;
-            margin-top: 20px;
-        }
-
-        /* Result */
-        .result {
-            text-align: center;
-            background: #eff6ff;
-            border: 1px solid #bfdbfe;
-        }
-
-        .result h3 {
-            color: #475569;
-            margin-bottom: 8px;
-        }
-
-        .main-result {
-            font-size: 50px;
-            font-weight: bold;
-            color: #1d4ed8;
-            margin-bottom: 20px;
-        }
-
-        .stats {
-            display: flex;
-            justify-content: center;
-            gap: 60px;
-        }
-
-        .stat h4 {
-            color: #64748b;
-            font-size: 13px;
-            margin-bottom: 5px;
-        }
-
-        .stat p {
-            font-size: 20px;
-            font-weight: bold;
-        }
-
-        /* CGPA */
-        .semester-header,
-        .semester-row {
-            display: grid;
-            grid-template-columns: 1fr 1.2fr 1.2fr 1.4fr 50px;
-            gap: 10px;
-            align-items: center;
-        }
-
-        .semester-header {
-            font-weight: bold;
-            color: #475569;
-            font-size: 14px;
-            margin-bottom: 10px;
-            padding: 0 5px;
-        }
-
-        .semester-row {
-            margin-bottom: 10px;
-        }
-
-        .quality-points {
-            background: #f1f5f9;
-            padding: 11px;
-            border-radius: 7px;
-            text-align: center;
-            font-weight: bold;
-        }
-
-        .formula {
-            background: #f8fafc;
-            border: 1px solid #e2e8f0;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        .formula strong {
-            color: #1d4ed8;
-        }
-
-        /* Grading Scale */
-        .grading h2 {
-            font-size: 20px;
-            margin-bottom: 15px;
-        }
-
-        .grading table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        .grading th,
-        .grading td {
-            border-bottom: 1px solid #e2e8f0;
-            padding: 9px;
-            text-align: center;
-        }
-
-        .grading th {
-            background: #f8fafc;
-        }
-
-        /* Hidden */
-        .hidden {
-            display: none;
-        }
-
-        /* Mobile */
-        @media (max-width: 700px) {
-
-            body {
-                padding: 20px 10px;
-            }
-
-            .header h1 {
-                font-size: 28px;
-            }
-
-            .card {
-                padding: 15px;
-            }
-
-            .table-header,
-            .semester-header {
-                display: none;
-            }
-
-            .subject-row {
-                grid-template-columns: 1fr 1fr;
-                padding: 15px;
-                border: 1px solid #e2e8f0;
-                border-radius: 10px;
-            }
-
-            .subject-row input:first-child {
-                grid-column: 1 / -1;
-            }
-
-            .subject-row .delete-btn {
-                justify-self: end;
-            }
-
-            .semester-row {
-                grid-template-columns: 1fr 1fr;
-                padding: 15px;
-                border: 1px solid #e2e8f0;
-                border-radius: 10px;
-            }
-
-            .semester-row .quality-points {
-                grid-column: 1 / 2;
-            }
-
-            .semester-row .delete-btn {
-                justify-self: end;
-            }
-
-            .stats {
-                gap: 20px;
-                flex-wrap: wrap;
-            }
-
-            .main-result {
-                font-size: 42px;
-            }
-
-            .grading table {
-                font-size: 13px;
-            }
-        }
-    </style>
 </head>
 
 <body>
@@ -711,6 +373,7 @@
         <div><span>GPS</span><strong id="printGps">0.00</strong></div>
     </div>
     <div class="print-details" id="printDetails"></div>
+    <div class="print-subjects" id="printSubjects"></div>
     <p class="print-credit">Prepared with SGPA & CGPA Calculator · Developed by Aronyo Mojumder</p>
 </section>
 
@@ -836,6 +499,35 @@
         document.getElementById("printDetails").innerHTML =
             `<p><strong>${isSGPA ? "Total credits" : "Credits completed"}:</strong> ${credits}</p>` +
             `<p><strong>${isSGPA ? "Subjects assessed" : "Semesters included"}:</strong> ${count}</p>`;
+
+        if (isSGPA) {
+            const rows = document.querySelectorAll(".subject-row");
+            const subjectRows = Array.from(rows).map((row, index) => {
+                const code = row.querySelector(".subject-code").value || `Subject ${index + 1}`;
+                const credit = row.querySelector(".credit").value || "-";
+                const marks = row.querySelector(".marks").value || "-";
+                const gradePoint = row.querySelector(".point").textContent;
+                const grade = row.querySelector(".grade").textContent;
+
+                return `<tr><td>${code}</td><td>${credit}</td><td>${marks}</td><td>${grade}</td><td>${gradePoint}</td></tr>`;
+            }).join("");
+
+            document.getElementById("printSubjects").innerHTML =
+                `<h2>Subject Performance</h2><table><thead><tr><th>Subject</th><th>Credit</th><th>Marks</th><th>Grade</th><th>GPS</th></tr></thead><tbody>${subjectRows}</tbody></table>`;
+        } else {
+            const rows = document.querySelectorAll(".semester-row");
+            const semesterRows = Array.from(rows).map((row, index) => {
+                const name = row.querySelector(".semester-name").value || `Semester ${index + 1}`;
+                const credit = row.querySelector(".semester-credit").value || "-";
+                const sgpa = row.querySelector(".semester-sgpa").value || "-";
+                const qualityPoints = row.querySelector(".quality-points").textContent;
+
+                return `<tr><td>${name}</td><td>${credit}</td><td>${sgpa}</td><td>${qualityPoints}</td></tr>`;
+            }).join("");
+
+            document.getElementById("printSubjects").innerHTML =
+                `<h2>Semester Performance</h2><table><thead><tr><th>Semester</th><th>Credits</th><th>SGPA</th><th>Quality Points</th></tr></thead><tbody>${semesterRows}</tbody></table>`;
+        }
 
         document.body.classList.add("printing");
         window.addEventListener("afterprint", () => {

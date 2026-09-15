@@ -551,6 +551,43 @@ input:focus {
         color: #07504f;
     }
 
+    .print-subjects h2 {
+        margin: 24px 0 10px;
+        color: #172033;
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 18px;
+    }
+
+    .print-subjects table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 12px;
+    }
+
+    .print-subjects th,
+    .print-subjects td {
+        padding: 8px 10px;
+        border: 1px solid #dfe5ee;
+        text-align: left;
+    }
+
+    .print-subjects th {
+        background: #07504f;
+        color: white;
+        font-size: 10px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+    }
+
+    .print-subjects td:not(:first-child),
+    .print-subjects th:not(:first-child) {
+        text-align: center;
+    }
+
+    .print-subjects tr:nth-child(even) td {
+        background: #f7f9fc;
+    }
+
     .print-credit {
         margin-top: 48px;
         padding-top: 12px;
