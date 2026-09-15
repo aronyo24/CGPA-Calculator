@@ -277,7 +277,8 @@ input:focus {
 .stats {
     display: flex;
     justify-content: center;
-    gap: clamp(28px, 8vw, 80px);
+    gap: 28px clamp(24px, 5vw, 64px);
+    flex-wrap: wrap;
 }
 
 .stat h4 {
@@ -292,6 +293,31 @@ input:focus {
     color: var(--ink);
     font-size: 1.15rem;
     font-weight: 700;
+}
+
+.result-actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 26px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(13, 107, 104, 0.14);
+}
+
+.export-btn {
+    min-height: 44px;
+    padding: 0 18px;
+    border: 1px solid var(--brand);
+    border-radius: 8px;
+    background: white;
+    color: var(--brand-dark);
+    font-weight: 700;
+    transition: background 160ms ease, color 160ms ease, transform 160ms ease;
+}
+
+.export-btn:hover {
+    background: var(--brand-dark);
+    color: white;
+    transform: translateY(-1px);
 }
 
 .formula {
@@ -311,7 +337,11 @@ input:focus {
 
 .grading h2 {
     margin-bottom: 16px;
-    font-size: 1.2rem;
+    font-size: 1.35rem;
+}
+
+.grading .description {
+    margin-bottom: 18px;
 }
 
 .grading table {
@@ -327,11 +357,26 @@ input:focus {
 }
 
 .grading th {
-    background: var(--surface-soft);
+    padding-top: 14px;
+    padding-bottom: 14px;
+    background: var(--brand-dark);
     color: var(--muted);
     font-size: 0.75rem;
     letter-spacing: 0.05em;
     text-transform: uppercase;
+}
+
+.grading th {
+    color: white;
+}
+
+.grading tbody tr:nth-child(even) {
+    background: #fbfcfd;
+}
+
+.grading tbody td:nth-child(2) {
+    color: var(--brand-dark);
+    font-weight: 700;
 }
 
 .grading tbody tr:last-child td {
@@ -350,6 +395,10 @@ input:focus {
 }
 
 .hidden {
+    display: none;
+}
+
+.print-report {
     display: none;
 }
 
@@ -401,6 +450,10 @@ input:focus {
         flex-wrap: wrap;
     }
 
+    .stat {
+        min-width: 92px;
+    }
+
     .main-result {
         font-size: 3.35rem;
     }
@@ -411,6 +464,99 @@ input:focus {
 
     .grading table {
         min-width: 360px;
+    }
+}
+
+@media print {
+    @page {
+        margin: 18mm;
+    }
+
+    body.printing {
+        padding: 0;
+        background: white;
+    }
+
+    body.printing > *:not(.print-report) {
+        display: none !important;
+    }
+
+    body.printing .print-report {
+        display: block;
+        color: #172033;
+        font-family: 'DM Sans', sans-serif;
+    }
+
+    .print-brand {
+        color: #0d6b68;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+    }
+
+    .print-report h1 {
+        margin-top: 10px;
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 34px;
+    }
+
+    .print-date {
+        margin-top: 8px;
+        color: #667085;
+        font-size: 13px;
+    }
+
+    .print-score-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+        margin: 32px 0 24px;
+    }
+
+    .print-score-grid div {
+        padding: 18px;
+        border: 1px solid #dfe5ee;
+        border-radius: 8px;
+        background: #f7f9fc;
+    }
+
+    .print-score-grid span,
+    .print-score-grid strong {
+        display: block;
+    }
+
+    .print-score-grid span {
+        color: #667085;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+    }
+
+    .print-score-grid strong {
+        margin-top: 8px;
+        color: #07504f;
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 24px;
+    }
+
+    .print-details {
+        padding-top: 18px;
+        border-top: 2px solid #0d6b68;
+        line-height: 2;
+    }
+
+    .print-details strong {
+        color: #07504f;
+    }
+
+    .print-credit {
+        margin-top: 48px;
+        padding-top: 12px;
+        border-top: 1px solid #dfe5ee;
+        color: #667085;
+        font-size: 12px;
     }
 }
 

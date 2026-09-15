@@ -1,4 +1,4 @@
-```html
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -450,6 +450,22 @@
                     <p id="subjectCount">0</p>
                 </div>
 
+                <div class="stat">
+                    <h4>Performance Grade</h4>
+                    <p id="sgpaGrade">-</p>
+                </div>
+
+                <div class="stat">
+                    <h4>GPS</h4>
+                    <p id="sgpaGps">0.00</p>
+                </div>
+
+            </div>
+
+            <div class="result-actions">
+                <button class="export-btn" onclick="exportResult('sgpa')">
+                    Export SGPA PDF
+                </button>
             </div>
 
         </div>
@@ -657,6 +673,26 @@
 
                 </div>
 
+                <div class="stat">
+
+                    <h4>Performance Grade</h4>
+                    <p id="cgpaGrade">-</p>
+
+                </div>
+
+                <div class="stat">
+
+                    <h4>GPS</h4>
+                    <p id="cgpaGps">0.00</p>
+
+                </div>
+
+            </div>
+
+            <div class="result-actions">
+                <button class="export-btn" onclick="exportResult('cgpa')">
+                    Export CGPA PDF
+                </button>
             </div>
 
         </div>
@@ -664,6 +700,19 @@
     </div>
 
 </div>
+
+<section id="printReport" class="print-report" aria-hidden="true">
+    <div class="print-brand">Academic Performance Report</div>
+    <h1 id="printTitle">SGPA Report</h1>
+    <p class="print-date" id="printDate"></p>
+    <div class="print-score-grid">
+        <div><span>Final Result</span><strong id="printScore">0.00</strong></div>
+        <div><span>Performance Grade</span><strong id="printGrade">-</strong></div>
+        <div><span>GPS</span><strong id="printGps">0.00</strong></div>
+    </div>
+    <div class="print-details" id="printDetails"></div>
+    <p class="print-credit">Prepared with SGPA & CGPA Calculator · Developed by Aronyo Mojumder</p>
+</section>
 
 <footer class="footer">
     Developed by <strong>Aronyo Mojumder</strong>
@@ -730,6 +779,70 @@
         }
 
         return ["F", 0.00];
+    }
+
+
+    function getPerformanceGrade(score) {
+
+        if (score >= 3.75) return "A+";
+        if (score >= 3.50) return "A";
+        if (score >= 3.25) return "A-";
+        if (score >= 3.00) return "B+";
+        if (score >= 2.75) return "B";
+        if (score >= 2.50) return "B-";
+        if (score >= 2.25) return "C+";
+        if (score >= 2.00) return "C";
+        if (score >= 1.50) return "D";
+
+        return "F";
+    }
+
+
+    function updatePerformanceSummary(prefix, score) {
+
+        document.getElementById(`${prefix}Grade`)
+            .textContent = getPerformanceGrade(score);
+
+        document.getElementById(`${prefix}Gps`)
+            .textContent = score.toFixed(2);
+
+    }
+
+
+    function exportResult(type) {
+
+        const isSGPA = type === "sgpa";
+        const score = parseFloat(
+            document.getElementById(isSGPA ? "sgpa" : "cgpa").textContent
+        );
+        const grade = document.getElementById(
+            isSGPA ? "sgpaGrade" : "cgpaGrade"
+        ).textContent;
+        const credits = document.getElementById(
+            isSGPA ? "totalCredits" : "cgpaCredits"
+        ).textContent;
+        const count = document.getElementById(
+            isSGPA ? "subjectCount" : "semesterCount"
+        ).textContent;
+
+        document.getElementById("printTitle").textContent = isSGPA
+            ? "SGPA Performance Report"
+            : "Final CGPA Performance Report";
+        document.getElementById("printDate").textContent =
+            `Generated on ${new Date().toLocaleDateString()}`;
+        document.getElementById("printScore").textContent = score.toFixed(2);
+        document.getElementById("printGrade").textContent = grade;
+        document.getElementById("printGps").textContent = score.toFixed(2);
+        document.getElementById("printDetails").innerHTML =
+            `<p><strong>${isSGPA ? "Total credits" : "Credits completed"}:</strong> ${credits}</p>` +
+            `<p><strong>${isSGPA ? "Subjects assessed" : "Semesters included"}:</strong> ${count}</p>`;
+
+        document.body.classList.add("printing");
+        window.addEventListener("afterprint", () => {
+            document.body.classList.remove("printing");
+        }, { once: true });
+
+        window.print();
     }
 
 
@@ -878,6 +991,8 @@
 
         document.getElementById("totalPoints")
             .textContent = totalPoints.toFixed(2);
+
+        updatePerformanceSummary("sgpa", sgpa);
 
 
         updateSubjectCount();
@@ -1058,6 +1173,8 @@
         document.getElementById("cgpaPoints")
             .textContent =
                 totalQualityPoints.toFixed(2);
+
+        updatePerformanceSummary("cgpa", cgpa);
 
 
         updateSemesterCount();
