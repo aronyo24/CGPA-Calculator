@@ -23,6 +23,7 @@
 
 body {
     min-height: 100vh;
+    overflow-x: hidden;
     padding: 42px 20px 28px;
     background: #eef3f5;
     background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(229, 244, 242, 0.62));
@@ -152,6 +153,16 @@ button {
 .subject-row,
 .semester-row {
     margin-bottom: 10px;
+}
+
+.input-field,
+.output-field {
+    min-width: 0;
+}
+
+.input-field label,
+.output-field span {
+    display: none;
 }
 
 input {
@@ -404,7 +415,7 @@ input:focus {
 
 @media (max-width: 700px) {
     body {
-        padding: 24px 12px;
+        padding: 22px 10px 26px;
     }
 
     .header {
@@ -417,7 +428,7 @@ input:focus {
     }
 
     .card {
-        padding: 20px 16px;
+        padding: 20px 14px;
     }
 
     .table-header,
@@ -435,14 +446,43 @@ input:focus {
         background: var(--surface-soft);
     }
 
-    .subject-row input:first-child,
-    .semester-row input:first-child {
+    .input-field label,
+    .output-field span {
+        display: block;
+        margin: 0 0 5px 2px;
+        color: var(--muted);
+        font-size: 0.68rem;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        line-height: 1.2;
+        text-transform: uppercase;
+    }
+
+    .input-field:first-child,
+    .semester-row .input-field:first-child {
         grid-column: 1 / -1;
+    }
+
+    .input-field input,
+    .output-field .grade,
+    .output-field .point,
+    .output-field .quality-points {
+        min-height: 46px;
+    }
+
+    .subject-row .input-field,
+    .semester-row .input-field,
+    .subject-row .output-field,
+    .semester-row .output-field {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
     }
 
     .subject-row .delete-btn,
     .semester-row .delete-btn {
         justify-self: end;
+        align-self: end;
     }
 
     .stats {
@@ -456,6 +496,16 @@ input:focus {
 
     .main-result {
         font-size: 3.35rem;
+    }
+
+    .add-btn,
+    .reset-btn,
+    .export-btn {
+        width: 100%;
+    }
+
+    .actions {
+        flex-direction: column;
     }
 
     .grading {

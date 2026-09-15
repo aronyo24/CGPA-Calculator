@@ -552,33 +552,48 @@
 
         row.innerHTML = `
 
-            <input
-                type="text"
-                placeholder="e.g. CSE-1301"
-                class="subject-code"
-            >
+            <div class="input-field">
+                <label>Course code</label>
+                <input
+                    type="text"
+                    placeholder="e.g. CSE-1301"
+                    class="subject-code"
+                >
+            </div>
 
-            <input
-                type="number"
-                placeholder="3"
-                min="0"
-                step="0.5"
-                class="credit"
-                oninput="calculateSGPA()"
-            >
+            <div class="input-field">
+                <label>Credit</label>
+                <input
+                    type="number"
+                    placeholder="e.g. 3"
+                    min="0"
+                    step="0.5"
+                    class="credit"
+                    oninput="calculateSGPA()"
+                >
+            </div>
 
-            <input
-                type="number"
-                placeholder="Marks"
-                min="0"
-                max="100"
-                class="marks"
-                oninput="calculateSGPA()"
-            >
+            <div class="input-field">
+                <label>Marks</label>
+                <input
+                    type="number"
+                    placeholder="0 - 100"
+                    min="0"
+                    max="100"
+                    class="marks"
+                    oninput="calculateSGPA()"
+                >
+            </div>
 
-            <div class="grade">-</div>
+            <div class="output-field">
+                <span>Grade</span>
+                <div class="grade">-</div>
+            </div>
 
-            <div class="point">-</div>
+            <div class="output-field">
+                <span>Grade point</span>
+                <div class="point">-</div>
+            </div>
 
             <button
                 class="delete-btn"
@@ -741,33 +756,43 @@
 
         row.innerHTML = `
 
-            <input
-                type="text"
-                placeholder="Semester 1"
-                class="semester-name"
-            >
+            <div class="input-field">
+                <label>Semester</label>
+                <input
+                    type="text"
+                    placeholder="e.g. Semester 1"
+                    class="semester-name"
+                >
+            </div>
 
-            <input
-                type="number"
-                placeholder="15"
-                min="0"
-                step="0.5"
-                class="semester-credit"
-                oninput="calculateCGPA()"
-            >
+            <div class="input-field">
+                <label>Credits</label>
+                <input
+                    type="number"
+                    placeholder="e.g. 15"
+                    min="0"
+                    step="0.5"
+                    class="semester-credit"
+                    oninput="calculateCGPA()"
+                >
+            </div>
 
-            <input
-                type="number"
-                placeholder="3.50"
-                min="0"
-                max="4"
-                step="0.01"
-                class="semester-sgpa"
-                oninput="calculateCGPA()"
-            >
+            <div class="input-field">
+                <label>SGPA</label>
+                <input
+                    type="number"
+                    placeholder="0.00 - 4.00"
+                    min="0"
+                    max="4"
+                    step="0.01"
+                    class="semester-sgpa"
+                    oninput="calculateCGPA()"
+                >
+            </div>
 
-            <div class="quality-points">
-                -
+            <div class="output-field">
+                <span>Quality points</span>
+                <div class="quality-points">-</div>
             </div>
 
             <button
